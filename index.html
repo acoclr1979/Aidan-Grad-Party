@@ -342,7 +342,7 @@
     </section>
 
     <!-- DIRECTIONS — right under countdown -->
-    <a class="directions-link" href="https://maps.google.com/?q=934+Bentley+Park+Circle" target="_blank" rel="noopener">
+    <a class="directions-link" href="https://maps.apple.com/?q=934+Bentley+Park+Circle" data-maps target="_blank" rel="noopener">
       <span class="dir-icon">📍</span>
       <span class="dir-text">
         <span class="dir-title">Get Directions</span><br>
@@ -427,6 +427,17 @@
     document.getElementById('cd-sec').textContent=pad(Math.floor((diff%60000)/1000));
   }
   tick(); setInterval(tick,1000);
+</script>
+
+<script>
+  // Auto-detect maps app
+  const mapsLinks = document.querySelectorAll('a[data-maps]');
+  const isAndroid = /android/i.test(navigator.userAgent);
+  mapsLinks.forEach(a => {
+    if (isAndroid) {
+      a.href = 'https://maps.google.com/?q=934+Bentley+Park+Circle';
+    }
+  });
 </script>
 </body>
 </html>
